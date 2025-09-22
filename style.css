@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap');
+
+/* --- Colores de la paleta --- */
+:root {
+    --color-principal: #ecf8a4; /* Rosa fuerte */
+    --color-secundario: #ADD8E6; /* Azul claro */
+    --color-fondo-claro: #F8F8F8; /* Blanco roto */
+    --color-texto-oscuro: #4A4A4A; /* Gris oscuro */
+    --color-resalte: #000000; /* Rosa más intenso */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo-claro);
+    background-image: url('one_piece_background.jpg'); /* Asegúrate de que esta ruta sea correcta */
+    background-repeat: repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    color: var(--color-texto-oscuro);
+}
+
+header {
+    background-color: var(--color-principal);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5em, 8vw, 4em);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: clamp(0.9em, 2vw, 1.2em);
+    font-weight: 300;
+    margin-top: 0.5rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-texto-oscuro);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: clamp(1.8em, 5vw, 2.5em);
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    color: var(--color-resalte);
+}
+
+h3 {
+    font-size: clamp(1.4em, 3vw, 1.8em);
+    color: var(--color-resalte);
+}
+
+main {
+    padding: 1rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+section {
+    background-color: white;
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el carrusel */
+#carrusel {
+    position: relative;
+    text-align: center;
+}
+
+.carrusel-contenedor {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* Aumentamos ligeramente la altura para más espacio */
+    max-height: 750px; /* Altura máxima */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem; /* Espacio extra en la parte inferior para el texto */
+}
+
+.carrusel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Apila imagen y texto verticalmente */
+    align-items: center;
+    justify-content: center; /* Centra todo el contenido verticalmente */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    box-sizing: border-box; /* Incluye padding y border en el ancho/alto total */
+}
+
+.carrusel-item.activo {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carrusel-item img {
+    max-width: 90%;
+    max-height: 60%; /* Reducimos la altura máxima de la imagen para dar más espacio al texto */
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem; /* Espacio entre la imagen y el texto */
+}
+
+.carrusel-texto {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 70%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    /* --- CAMBIOS CLAVE AQUÍ PARA EL SCROLL DEL TEXTO --- */
+    max-height: 30%; /* Altura máxima para el contenedor del texto */
+    overflow-y: auto; /* Habilita la barra de desplazamiento vertical si el contenido excede */
+    /* -------------------------------------------------- */
+    box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+}
+
+.carrusel-item.activo .carrusel-texto {
+    opacity: 1;
+}
+
+.carrusel-texto p {
+    font-size: clamp(1em, 2vw, 1.1em);
+    margin: 0; /* Quitamos márgenes por defecto del párrafo para mejor control */
+}
+
+#anterior, #siguiente {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-principal);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+#anterior {
+    left: 10px;
+}
+
+#siguiente {
+    right: 10px;
+}
+
+#anterior:hover, #siguiente:hover {
+    background-color: var(--color-resalte);
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: var(--color-texto-oscuro);
+    color: var(--color-fondo-claro);
+    margin-top: 3rem;
+}
+
+/* Responsividad general */
+@media (max-width: 768px) {
+    main {
+        padding: 0.5rem;
+    }
+
+    section {
+        padding: 1.5rem;
+    }
+
+    .carrusel-contenedor {
+        height: 80vh; /* Un poco más de altura en móviles */
+    }
+
+    .carrusel-item img {
+        max-width: 95%;
+        max-height: 50%; /* Más espacio para el texto en móviles */
+    }
+
+    .carrusel-texto {
+        max-width: 90%;
+        padding: 1rem;
+        max-height: 40%; /* Más altura máxima para el texto en móviles */
+    }
+
+    #anterior, #siguiente {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5em;
+    }
+}
